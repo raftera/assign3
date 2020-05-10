@@ -95,10 +95,11 @@ function addTwit(content, author) {
 document.getElementById("navbar-search-button").addEventListener("click", searchTwits);
 
 function searchTwits(){
+  console.log(document.getElementsByClassName("twit-content")[1]);
   var target = document.getElementById("navbar-search-input").value;
   console.log("==searching twits for " + target);
-  var twits = document.getElementsByClassName("twit");
-  for (var i = 0; i < twits; i+=1){
-    //
+  var twits = document.getElementsByClassName("twit-text");
+  for (var i = 0; i < twits.length; i+=1){
+    //console.log("content of searched twit:" + document.getElementsByClassName("twit-text")[i].value);
   }
 }
