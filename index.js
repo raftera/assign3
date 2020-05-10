@@ -26,15 +26,44 @@ function closeCreate() {
   for (var i = 0; i < modal.length; i+=1){
   modal[i].style.display = 'none';
   }
+  document.getElementById("twit-attribution-input").value = '';
+  content = document.getElementById("twit-text-input").value = '';
   author = '';
   content = '';
+
+}
+
+function alert(){
+//  if (document.get)
 
 }
 
 document.getElementsByClassName("modal-accept-button")[0].addEventListener("click", twitData);
 
 function twitData(){
-  
+  if (!checkEmpty()){
+  author = document.getElementById("twit-attribution-input").value;
+  console.log(author);
+  content = document.getElementById("twit-text-input").value;
+  console.log(content);
+ addTwit(content, author);
+  author = '';
+  content = '';
+}
+}
+
+function checkEmpty(){
+if (!document.getElementById("twit-attribution-input").value){
+  console.log("==author field empty!");
+  return true;
+}
+
+if (!document.getElementById("twit-text-input").value){
+  console.log("==twit text field empty!");
+  return true;
+}
+
+  return false;
 }
 
 function addTwit(content, author) {
@@ -53,6 +82,7 @@ function addTwit(content, author) {
     </div>
   </article>
   */
+  console.log("==creating new Twit");
   var newTwit = document.createElement('article');
   newTwit.classList.add('twit')
 
