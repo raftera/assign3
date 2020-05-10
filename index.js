@@ -91,3 +91,14 @@ function addTwit(content, author) {
 
 
 }
+
+document.getElementById("navbar-search-button").addEventListener("click", searchTwits);
+
+function searchTwits(){
+  var target = document.getElementById("navbar-search-input").value;
+  console.log("==searching twits for " + target);
+  var twits = document.getElementsByClassName("twit");
+  for (var i = 0; i < twits; i+=1){
+    //
+  }
+}
