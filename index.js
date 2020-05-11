@@ -83,23 +83,86 @@ function addTwit(content, author) {
   </article>
   */
   console.log("==creating new Twit");
-  var newTwit = document.createElement('article');
-  newTwit.classList.add('twit')
 
-  var img = document.createElement('div');
-  img.classList.add("");
+  var newTwit = document.createElement("twit");
+  var horn = document.createElement('twit-icon');
+  horn.classList.add("fas");
+  horn.classList.add("fa-bullhorn");
+  horn.style["font-size"] = "24px";
+  newTwit.appendChild(horn);
 
+  cont = document.createTextNode(content);
+  autht = document.createTextNode(author);
+
+  var text = document.createElement("twit-content");
+  text.style["flex"] = "1 1 80%";
+  text.style["margin-left"] = "10px";
+
+  var ttext = document.createElement("twit-text");
+  //ttext.style['margin-top'] = "8px";
+//  ttext.style['text-align'] = "right";
+  //ttext.style["font-weight"] = "bold";
+  ttext.style.flex = "1 1 80%";
+  ttext.style["margin-left"] = "10px";
+  ttext.style["font-family"] = "Roboto, Helvetica, sans-serif";
+  ttext.appendChild(cont);
+
+  text.appendChild(ttext);
+
+
+  var authtext = document.createElement("twit-author");
+//  authtext.style["margin-top"] = "8px";
+//  authtext.style['text-align'] = "right";
+  authtext.style["font-weight"] = "bold";
+  authtext.style["font-family"] = "Roboto, Helvetica, sans-serif";
+  authtext.style["text-align"] = "right";
+  authtext.style["padding-left"] = "60%";
+  authtext.style["padding-top"] = "45px";
+  authtext.style.position = "absolute";
+  authtext.appendChild(autht);
+
+  text.appendChild(authtext);
+
+
+  newTwit.appendChild(text);
+
+newTwit.style.flex = "0 1 28%"
+newTwit.style.display = "flex";
+newTwit.style.margin = "2px";
+newTwit.style.padding = "20px";
+newTwit.style.border = "1px solid #dadada";
+newTwit.style["border-radius"] = "2px";
+newTwit.style["background-color"] = "#fff";
+newTwit.style.position = "relative";
+newTwit.style.width = "400px";
+newTwit.style.height = "65px";
+
+  document.getElementsByClassName("twit-container")[0].appendChild(newTwit);
+
+
+  closeCreate();
 
 }
 
+
+
 document.getElementById("navbar-search-button").addEventListener("click", searchTwits);
 
+
 function searchTwits(){
-  console.log(document.getElementsByClassName("twit-content")[1]);
-  var target = document.getElementById("navbar-search-input").value;
+
+  var holder;
+  var twits = document.getElementsByClassName("twit-container");
+  var target = document.getElementById("navbar-search-input").value.toLowerCase();
   console.log("==searching twits for " + target);
-  var twits = document.getElementsByClassName("twit-text");
+  var twits = document.getElementsByClassName("twit");
   for (var i = 0; i < twits.length; i+=1){
-    //console.log("content of searched twit:" + document.getElementsByClassName("twit-text")[i].value);
+    holder = document.getElementsByClassName("twit")[i].textContent.toLowerCase();
+    if (holder.search(target) === -1){
+      //  holder.parentNode.removeChild(holder);
+     document.getElementsByClassName("twit")[i].style.display = "none";
+    }
+
   }
+  
 }
